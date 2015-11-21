@@ -3,7 +3,7 @@
     <string name="app_name">MCC</string>
     <string name="prompt_username">username</string>
     <string name="prompt_password">password</string>
-    <string name="action_sign_in">Sign In</string>
+    <string name="action_log_in">Log In</string>
     <string name="invalid_password">Invalid password</string>
     <string name="field_required">Field required</string>
     <string name="invalid_username">Invalid username</string>
