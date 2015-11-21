@@ -20,6 +20,8 @@ import retrofit.Retrofit;
 import com.group16.mcc.api.MccApi;
 import com.group16.mcc.api.User;
 
+import com.group16.mcc.app.R;
+
 
 /**
  * Modified from http://javapapers.com/android/beautiful-android-login-screen-design-tutorial/
