@@ -20,8 +20,6 @@ import retrofit.Retrofit;
 import com.group16.mcc.api.MccApi;
 import com.group16.mcc.api.User;
 
-import com.group16.mcc.app.R;
-
 
 /**
  * Modified from http://javapapers.com/android/beautiful-android-login-screen-design-tutorial/
@@ -45,7 +43,7 @@ public class LoginActivity extends Activity implements Callback<User> {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        usernameTextView = (EditText) findViewById(R.id.username);
+        usernameTextView = (EditText) findViewById(R.id.event_title);
         passwordTextView = (EditText) findViewById(R.id.password);
 
         Button loginButton = (Button) findViewById(R.id.log_in_button);

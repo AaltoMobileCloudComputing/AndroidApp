@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/toolbar" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:focusable="true" android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:layout_marginLeft="@dimen/horizontal_margin"
+        android:layout_marginRight="@dimen/horizontal_margin"
+        android:layout_marginTop="@dimen/vertical_margin"
+        android:layout_marginBottom="@dimen/vertical_margin">
+
+
+
+        <EditText android:id="@+id/event_title" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="@string/event_title"
+            android:maxLines="1" android:singleLine="true"
+            android:transitionName="@string/transition_title"
+            android:layout_margin="@dimen/element_margin"
+            android:textColorHint="@color/secondary_text"
+            android:textColor="@color/primary_text" />
+
+        <EditText android:id="@+id/event_description" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="@string/event_description"
+            android:inputType="textMultiLine"
+            android:lines="3"
+            android:minLines="3"
+            android:maxLines="5"
+            android:layout_margin="@dimen/element_margin"
+            android:textColorHint="@color/secondary_text"
+            android:textColor="@color/primary_text"
+            android:gravity="bottom"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/horizontal_margin"
+            android:layout_marginRight="@dimen/horizontal_margin"
+            android:layout_marginTop="@dimen/vertical_margin"
+            android:layout_marginBottom="@dimen/vertical_margin">
+
+            <TextView
+                android:id="@+id/label_from"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="50dp"
+                android:text="@string/label_from"
+                android:textSize="@dimen/title_size"
+                android:labelFor="@+id/from_date" />
+
+            <EditText
+                android:id="@+id/from_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:focusable="false"
+                android:ems="10"
+                android:text="2015-11-11" />
+
+            <EditText
+                android:id="@+id/from_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:focusable="false"
+                android:ems="10"
+                android:text="12:00" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/horizontal_margin"
+            android:layout_marginRight="@dimen/horizontal_margin"
+            android:layout_marginTop="@dimen/vertical_margin"
+            android:layout_marginBottom="@dimen/vertical_margin" >
+
+            <TextView
+                android:id="@+id/label_to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="50dp"
+                android:text="@string/label_to"
+                android:labelFor="@+id/to_date" />
+
+            <EditText
+                android:id="@+id/to_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:focusable="false"
+                android:ems="10"
+                android:text="2015-11-11" />
+
+            <EditText
+                android:id="@+id/to_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:focusable="false"
+                android:ems="10"
+                android:text="12:00" />
+
+        </LinearLayout>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="All day"
+            android:id="@+id/all_day_checkbox"
+            android:checked="false" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/new_event_button"
+            style="@style/FABStyle"
+            app:borderWidth="0dp"
+            app:elevation="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_done_white_18dp" />
+
+    </RelativeLayout>
+
+</LinearLayout>
+

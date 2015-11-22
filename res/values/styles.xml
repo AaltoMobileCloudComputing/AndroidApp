@@ -1,18 +1,36 @@
 <resources xmlns:app="http://schemas.android.com/apk/res-auto">
     <!-- Base application theme. -->
     <style name="MccTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
         <item name="colorControlNormal">@color/primary_text</item>
         <item name="colorControlActivated">@color/accent</item>
         <item name="colorControlHighlight">@color/accent</item>
+        <item name="android:textColorPrimary">#fff</item>
         <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
         <item name="android:editTextStyle">@style/RobotoEditTextStyle</item>
+
+        <item name="android:windowContentTransitions">true</item>
+
+        <!--
+        <item name="android:windowEnterTransition">@android:transition/slide_bottom</item>
+        <item name="android:windowExitTransition">@android:transition/slide_bottom</item>
+
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
+        <item name="android:windowSharedElementEnterTransition">@android:transition/move</item>
+        <item name="android:windowSharedElementExitTransition">@android:transition/move</item> -->
     </style>
     <style name="RobotoTextViewStyle" parent="android:Widget.TextView">
         <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">@dimen/title_size</item>
+        <item name="android:textColor">@color/primary_text</item>
     </style>
     <style name="RobotoEditTextStyle" parent="android:Widget.EditText">
         <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">@dimen/title_size</item>
+        <item name="android:textColor">@color/primary_text</item>
     </style>
     <style name="FABStyle">
         <item name="android:layout_marginBottom">16dp</item>
