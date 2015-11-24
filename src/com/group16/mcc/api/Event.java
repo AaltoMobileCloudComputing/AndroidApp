@@ -1,9 +1,9 @@
 package com.group16.mcc.api;
 
-import java.util.Date;
-
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import org.joda.time.DateTime;
 
 /**
  * Generated with http://www.parcelabler.com/
@@ -13,8 +13,10 @@ public class Event implements Parcelable {
     public String calendar;
     public String title;
     public String description;
-    public Date start;
-    public Date end;
+    public DateTime start;
+    public DateTime end;
+
+    public Event() { }
 
     protected Event(Parcel in) {
         _id = in.readString();
@@ -22,9 +24,9 @@ public class Event implements Parcelable {
         title = in.readString();
         description = in.readString();
         long tmpStart = in.readLong();
-        start = tmpStart != -1 ? new Date(tmpStart) : null;
+        start = tmpStart != -1 ? new DateTime(tmpStart) : null;
         long tmpEnd = in.readLong();
-        end = tmpEnd != -1 ? new Date(tmpEnd) : null;
+        end = tmpEnd != -1 ? new DateTime(tmpEnd) : null;
     }
 
     @Override
@@ -38,8 +40,8 @@ public class Event implements Parcelable {
         dest.writeString(calendar);
         dest.writeString(title);
         dest.writeString(description);
-        dest.writeLong(start != null ? start.getTime() : -1L);
-        dest.writeLong(end != null ? end.getTime() : -1L);
+        dest.writeLong(start != null ? start.getMillis() : -1L);
+        dest.writeLong(end != null ? end.getMillis() : -1L);
     }
 
     @SuppressWarnings("unused")

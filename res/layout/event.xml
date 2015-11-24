@@ -119,7 +119,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="All day"
-            android:id="@+id/all_day_checkbox"
+            android:id="@+id/all_day"
             android:checked="false" />
 
     </LinearLayout>
@@ -130,7 +130,7 @@
         android:layout_gravity="center_horizontal">
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/new_event_button"
+            android:id="@+id/save_event_button"
             style="@style/FABStyle"
             app:borderWidth="0dp"
             app:elevation="8dp"

@@ -16,4 +16,6 @@
     <string name="edit_event">Edit event</string>
 
     <string name="transition_title">transition:TITLE</string>
+    <string name="end_date_before">End date should be after start date</string>
+    <string name="end_time_before">End time should be after start time</string>
 </resources>
