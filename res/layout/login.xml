@@ -40,13 +40,14 @@
         android:orientation="vertical"
         android:gravity="center_vertical|center_horizontal">
 
-        <android.support.v4.widget.ContentLoadingProgressBar
+        <ProgressBar
             android:id="@+id/login_progress"
-            style="@android:style/Widget.ProgressBar.Large"
-            android:layout_width="wrap_content"
+            style="@android:style/Widget.Material.Light.ProgressBar"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:indeterminate="true"
-        android:visibility="invisible"/>
+            android:elevation="@dimen/z1"
+            android:visibility="invisible"
+            android:indeterminate="true"/>
 
         <ScrollView
             android:id="@+id/login_form"
@@ -58,10 +59,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:paddingTop="@dimen/vertical_margin"
                 android:paddingBottom="@dimen/vertical_margin"
                 android:paddingLeft="@dimen/horizontal_margin"
                 android:paddingRight="@dimen/horizontal_margin"
-                android:paddingTop="@dimen/vertical_margin"
                 android:clipToPadding="false">
 
                 <EditText android:id="@+id/username" android:layout_width="match_parent"

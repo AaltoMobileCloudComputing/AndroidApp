@@ -45,7 +45,7 @@ public class LoginActivity extends Activity implements Callback<User> {
 
         usernameTextView = (EditText) findViewById(R.id.username);
         passwordTextView = (EditText) findViewById(R.id.password);
-        loginProgress = (ContentLoadingProgressBar) findViewById(R.id.login_progress);
+        loginProgress = (ProgressBar) findViewById(R.id.login_progress);
 
         Button loginButton = (Button) findViewById(R.id.log_in_button);
         loginButton.setOnClickListener(new OnClickListener() {
@@ -106,7 +106,7 @@ public class LoginActivity extends Activity implements Callback<User> {
         loginProgress.setVisibility(View.INVISIBLE);
         Log.e(TAG, "Error when trying to log in", t);
         if (t instanceof SocketTimeoutException) {
-            Toast.makeText(this, "Can't connect backend.\nTry again later.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Can't connect to backend", Toast.LENGTH_LONG).show();
         }
     }
 }

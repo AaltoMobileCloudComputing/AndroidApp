@@ -1,6 +1,7 @@
 package com.group16.mcc.app;
 
 import java.io.IOException;
+import java.net.SocketTimeoutException;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,6 +22,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -46,6 +48,7 @@ public class EventActivity extends AppCompatActivity implements Callback<Event> 
     private EditText toDateView;
     private EditText toTimeView;
     private CheckBox allDayCheckBox;
+    private ProgressBar eventProgress;
 
     private static final MccApi api = Util.getApi();
 
@@ -82,7 +85,7 @@ public class EventActivity extends AppCompatActivity implements Callback<Event> 
         allDayCheckBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                handleAllDayClicked();
+                allDayClicked();
             }
         });
 
@@ -119,6 +122,20 @@ public class EventActivity extends AppCompatActivity implements Callback<Event> 
             }
         });
 
+        FloatingActionButton deleteEventButton = (FloatingActionButton) findViewById(R.id.delete_event_button);
+        if (activityEvent == null) {
+            deleteEventButton.setVisibility(View.GONE);
+        } else {
+            deleteEventButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    deleteEvent();
+                }
+            });
+        }
+
+        eventProgress = (ProgressBar) findViewById(R.id.event_progress);
+
         if (activityEvent == null) {
             getSupportActionBar().setTitle(R.string.new_event);
             DateTime now = new DateTime();
@@ -137,7 +154,7 @@ public class EventActivity extends AppCompatActivity implements Callback<Event> 
         }
     }
 
-    private void handleAllDayClicked() {
+    private void allDayClicked() {
         if (allDayCheckBox.isChecked()) {
             fromTimeView.setVisibility(View.GONE);
             toTimeView.setVisibility(View.GONE);
@@ -145,6 +162,12 @@ public class EventActivity extends AppCompatActivity implements Callback<Event> 
             fromTimeView.setVisibility(View.VISIBLE);
             toTimeView.setVisibility(View.VISIBLE);
         }
+    }
+
+    private void deleteEvent() {
+        eventProgress.setVisibility(View.VISIBLE);
+        Call<Event> call = api.deleteEvent(activityEvent._id, token);
+        call.enqueue(this);
     }
 
     private void saveEvent() {
@@ -196,6 +219,7 @@ public class EventActivity extends AppCompatActivity implements Callback<Event> 
             return;
         }
 
+        eventProgress.setVisibility(View.VISIBLE);
         if (activityEvent == null) {
             Call<Event> call = api.createEvent(event, token);
             call.enqueue(this);
@@ -207,6 +231,7 @@ public class EventActivity extends AppCompatActivity implements Callback<Event> 
 
     @Override
     public void onResponse(Response<Event> response, Retrofit retrofit) {
+        eventProgress.setVisibility(View.INVISIBLE);
         if (response.isSuccess()) {
             setResult(RESULT_OK);
             super.finish();
@@ -223,7 +248,10 @@ public class EventActivity extends AppCompatActivity implements Callback<Event> 
 
     @Override
     public void onFailure(Throwable t) {
-
+        eventProgress.setVisibility(View.INVISIBLE);
+        if (t instanceof SocketTimeoutException) {
+            Toast.makeText(this, "Can't connect to backend", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void showDatePickerDialog(final String dialogTag) {
