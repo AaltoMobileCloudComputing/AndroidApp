@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.group16.mcc.api.UserCalendar;
 
@@ -36,6 +37,8 @@ public class ShareListAdapter extends RecyclerView.Adapter<ShareListAdapter.View
         public void onClick(View v) {
             userCalendars.get(getAdapterPosition()).addEvent(main.shareEvent, main.getContentResolver());
             main.finish();
+            String msg = main.shareEvent.title + " shared";
+            Toast.makeText(main.getApplicationContext(), msg, Toast.LENGTH_LONG).show();
         }
     }
     @Override

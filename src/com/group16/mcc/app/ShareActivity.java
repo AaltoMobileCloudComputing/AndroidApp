@@ -11,10 +11,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Toast;
 
-import com.group16.mcc.api.UserCalendar;
 import com.group16.mcc.api.Event;
+import com.group16.mcc.api.UserCalendar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,13 +50,6 @@ public class ShareActivity extends AppCompatActivity {
         shareListAdapter = new ShareListAdapter(userCalendars, this);
         shareList.setAdapter(shareListAdapter);
 
-    }
-
-    @Override
-    public void finish() {
-        super.finish();
-        String msg = shareEvent.title + " shared";
-        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
     }
 
     public void getCalendars() {
