@@ -8,8 +8,8 @@
 
     <!-- The ant.properties file can be created by you. It is only edited by the
          'android' tool to add properties to it.
-         This is the place to change some Ant specific build properties.
-         Here are some properties you may want to change/update:
+         This is the place to change getCalendars Ant specific build properties.
+         Here are getCalendars properties you may want to change/update:
 
          source.dir
              The name of the source directory. Default is 'src'.

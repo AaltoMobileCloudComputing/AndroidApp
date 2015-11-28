@@ -1,17 +1,17 @@
 package com.group16.mcc.app;
 
-import java.util.List;
-
 import android.support.v7.widget.RecyclerView;
-import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.group16.mcc.Util;
 import com.group16.mcc.api.Event;
+
+import java.util.List;
 
 /**
  * Adapted from http://www.vogella.com/tutorials/AndroidRecyclerView/article.html
@@ -21,13 +21,14 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.View
 
     private MainActivity main;
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements OnClickListener, OnLongClickListener {
         public TextView title;
         public TextView time;
 
         public ViewHolder(View v) {
             super(v);
             v.setOnClickListener(this);
+            v.setOnLongClickListener(this);
             title = (TextView) v.findViewById(R.id.event_card_title);
             time = (TextView) v.findViewById(R.id.event_card_time);
         }
@@ -36,6 +37,12 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.View
         @Override
         public void onClick(View view) {
             main.editEvent(events.get(getAdapterPosition()), view);
+        }
+
+        @Override
+        public boolean onLongClick(View view) {
+            main.openShare(events.get(getAdapterPosition()), view);
+            return true;
         }
     }
 

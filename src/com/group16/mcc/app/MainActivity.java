@@ -1,8 +1,5 @@
 package com.group16.mcc.app;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -19,14 +16,17 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
 
+import com.group16.mcc.Util;
+import com.group16.mcc.api.Event;
+import com.group16.mcc.api.MccApi;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
-
-import com.group16.mcc.Util;
-import com.group16.mcc.api.Event;
-import com.group16.mcc.api.MccApi;
 
 public class MainActivity extends AppCompatActivity implements Callback<List<Event>> {
     private static final String TAG = "MainActivity";
@@ -61,6 +61,13 @@ public class MainActivity extends AppCompatActivity implements Callback<List<Eve
             }
         });
 
+        newEventButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                return true;
+            }
+        });
+
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -75,6 +82,8 @@ public class MainActivity extends AppCompatActivity implements Callback<List<Eve
         eventList.setLayoutManager(eventListLayoutManager);
         eventListAdapter = new EventListAdapter(events, this);
         eventList.setAdapter(eventListAdapter);
+
+
     }
 
     @Override
@@ -97,6 +106,12 @@ public class MainActivity extends AppCompatActivity implements Callback<List<Eve
                 MainActivity.this, new Pair<View, String>(view.findViewById(R.id.event_card_title), getString(R.string.transition_title))
         );
         ActivityCompat.startActivityForResult(MainActivity.this, eventActivity, EDIT_EVENT, options.toBundle());
+    }
+
+    public void openShare(Event event, View view) {
+        Intent shareActivity = new Intent(MainActivity.this, ShareActivity.class);
+        shareActivity.putExtra("event", event);
+        ActivityCompat.startActivity(MainActivity.this, shareActivity, null);
     }
 
     @Override
