@@ -267,8 +267,9 @@ public class EventActivity extends AppCompatActivity implements Callback<Event> 
                     date = new LocalDate();
                 }
                 int year = date.getYear();
-                int month = date.getMonthOfYear();
+                int month = date.getMonthOfYear()-1; // DatePickerDialog wants month in range [0,11]
                 int day = date.getDayOfMonth();
+                Log.d(TAG, String.format("year: %d, month: %d, day: %d", year, month ,day));
 
                 DatePickerDialog d = new DatePickerDialog(getActivity(), new DatePickerChangeListener(), year, month, day);
                 d.getDatePicker().setTag(dialogTag);
@@ -308,7 +309,7 @@ public class EventActivity extends AppCompatActivity implements Callback<Event> 
             String pickerTag = view.getTag().toString();
             EditText viewToChange = getDateTimeView(pickerTag);
             if (viewToChange != null) {
-                viewToChange.setText(String.format("%04d-%02d-%02d", year, month, day));
+                viewToChange.setText(String.format("%04d-%02d-%02d", year, month+1, day)); // Month is in range [0,11]
                 viewToChange.setError(null);
             }
         }
