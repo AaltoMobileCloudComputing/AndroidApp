@@ -76,8 +76,10 @@ public class ShareActivity extends AppCompatActivity {
         Cursor cur = null;
         ContentResolver cr = getContentResolver();
         Uri uri = CalendarContract.Calendars.CONTENT_URI;
-        String selection = "((" + CalendarContract.Calendars.OWNER_ACCOUNT + " != ?) AND (" + CalendarContract.Calendars.OWNER_ACCOUNT + " != ?))";
-        String[] selectionArgs = new String[] {"#contacts@group.v.calendar.google.com", "fi.finnish#holiday@group.v.calendar.google.com"};
+        String selection = "((" + CalendarContract.Calendars.OWNER_ACCOUNT + " != ?) " +
+                "AND (" + CalendarContract.Calendars.OWNER_ACCOUNT + " != ?))";
+        String[] selectionArgs = new String[] {"#contacts@group.v.calendar.google.com",
+                "fi.finnish#holiday@group.v.calendar.google.com"};
         // Submit the query and get a Cursor object back.
         cur = cr.query(uri, EVENT_PROJECTION, selection, selectionArgs, null);
 

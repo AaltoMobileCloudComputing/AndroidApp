@@ -18,4 +18,5 @@
     <string name="transition_title">transition:TITLE</string>
     <string name="end_date_before">End date should be after start date</string>
     <string name="end_time_before">End time should be after start time</string>
+    <string name="sample_time_str">11.11.2015 12:00 - 14:00</string>
 </resources>

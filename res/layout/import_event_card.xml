@@ -14,23 +14,31 @@
         android:padding="16dp" >
 
         <TextView
-            android:id="@+id/event_card_title"
+            android:id="@+id/import_card_title"
             android:transitionName="@string/transition_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:text="Title"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/event_card_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/event_card_title"
+            android:text="Calendar name"
+            android:id="@+id/import_card_calendar_name"
+            android:layout_alignParentTop="false"
+            android:layout_below="@+id/import_card_title"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/import_card_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:ellipsize="marquee"
-            android:singleLine="true"
+            android:singleLine="false"
             android:text="@string/sample_time_str"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:layout_below="@+id/import_card_calendar_name"/>
 
     </RelativeLayout>
 

@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements Callback<List<Eve
         newEventButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
+                openImport();
                 return true;
             }
         });
@@ -112,6 +113,12 @@ public class MainActivity extends AppCompatActivity implements Callback<List<Eve
         Intent shareActivity = new Intent(MainActivity.this, ShareActivity.class);
         shareActivity.putExtra("event", event);
         ActivityCompat.startActivity(MainActivity.this, shareActivity, null);
+    }
+
+    public void openImport() {
+        Intent importActivity = new Intent(MainActivity.this, ImportActivity.class);
+        importActivity.putExtra("token", token);
+        ActivityCompat.startActivity(MainActivity.this, importActivity, null);
     }
 
     @Override
