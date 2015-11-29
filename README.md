@@ -32,4 +32,7 @@ Click wanted calendar and event is exported into selected calendar.
 
 ## Import event to service
 
-User can import events from device calendars 
+User can import events from device calendars.
+To do this user must long click floating button in event list.
+This opens list of all upcoming events.
+By clicking event this event will be added to service.
