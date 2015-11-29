@@ -1,6 +1,6 @@
 # MCC 16 App
 
-# How install
+# How to install
 
 App can be installed by transferring mcc-app-release.apk to Android phone and installing it.
 User has to allow installing from unknown sources.
@@ -17,11 +17,17 @@ User must first create account in web UI that can be found from http://134.168.4
 
 Application backend is deployed to public cloud. In this build this public cloud is used.
 
-## List of events
-
 ## Add event
+                                                                     
+Click the button with plus icon to create new event. Events (and any edits) are added directly to the backend. Offline usage of the app is not supported.
 
-## Modify event
+## Edit event
+
+Click one of the events in the main list to edit that particular event.
+
+## Delete event
+
+Click the trash can button in event editing view to delete the event.
 
 ## Export event to device calendars
 
