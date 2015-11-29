@@ -10,7 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.group16.mcc.Util;
 import com.group16.mcc.api.Event;
@@ -19,6 +21,8 @@ import com.group16.mcc.api.MccApi;
 
 import org.joda.time.DateTime;
 
+import java.io.IOException;
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -34,6 +38,7 @@ public class ImportActivity extends AppCompatActivity implements Callback<Event>
     private RecyclerView.Adapter importListAdapter;
     private static final MccApi api = Util.getApi();
     private String token;
+    private String TAG = "ImportActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -130,7 +135,7 @@ public class ImportActivity extends AppCompatActivity implements Callback<Event>
                 "fi.finnish#holiday@group.v.calendar.google.com",
                 String.valueOf(System.currentTimeMillis())
         };
-        Cursor cursor = getContentResolver().query(uri, EVENT_PROJECTION, selection, selectorArguments, null);
+        Cursor cursor = getContentResolver().query(uri, EVENT_PROJECTION, selection, selectorArguments, CalendarContract.Events.DTSTART);
 
         while (cursor.moveToNext()) {
             ImportEvent event = new ImportEvent();
@@ -150,6 +155,7 @@ public class ImportActivity extends AppCompatActivity implements Callback<Event>
     }
 
     public void addEventToBackEnd(Event event) {
+        Log.i(TAG, "Making importing event api call");
         Call<Event> call = api.createEvent(event, token);
         call.enqueue(this);
     }
@@ -157,11 +163,28 @@ public class ImportActivity extends AppCompatActivity implements Callback<Event>
 
     @Override
     public void onResponse(Response<Event> response, Retrofit retrofit) {
-        super.finish();
+        if (response.isSuccess()) {
+            String msg = "Event imported";
+            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+            super.finish();
+        }
+        else if (response.code() == 400) {
+            try {
+                Toast.makeText(this, response.errorBody().string(), Toast.LENGTH_SHORT).show();
+            } catch (IOException e) {
+                Log.e(TAG, "Error retrieving error response", e);
+            }
+        }
+        else {
+            Log.e(TAG, "Error when trying to create event");
+        }
+
     }
 
     @Override
     public void onFailure(Throwable t) {
-        System.out.print("Error");
+        if (t instanceof SocketTimeoutException) {
+            Toast.makeText(this, "Can't connect to backend", Toast.LENGTH_LONG).show();
+        }
     }
 }

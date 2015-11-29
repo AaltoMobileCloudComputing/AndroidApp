@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.group16.mcc.Util;
 import com.group16.mcc.api.ImportEvent;
@@ -41,8 +40,6 @@ public class ImportActivityAdapter extends RecyclerView.Adapter<ImportActivityAd
         public void onClick(View v) {
             ImportEvent importEvent = importEvents.get(getAdapterPosition());
             main.addEventToBackEnd(importEvent.getEvent());
-            String msg = "Clicked";
-            Toast.makeText(main.getApplicationContext(), msg, Toast.LENGTH_LONG).show();
         }
     }
 
